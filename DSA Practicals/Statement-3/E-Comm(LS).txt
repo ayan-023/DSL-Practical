@@ -1,0 +1,27 @@
+def S(l):
+    key=int(input("enter the customer id to search :"))
+    for i in range (len(l)):
+        if key==l[i]:
+            print("customer id found at index ",i,":",l[i])
+
+print("CUSTOMERS ID SOFTWARE")
+l=[]
+n=int(input("enter no. of customers:"))
+for i in range(n):
+    x=int(input("enter customer ID:"))
+    l.append(x)
+
+while True:
+    print("1.search")
+    print("2.exit")
+    
+    c=int(input("enter your choice : "))
+    
+    if c==1:
+        S(l)
+    
+    elif c==2:
+        print("exiting")
+        break
+    else:
+        print("invalid input")

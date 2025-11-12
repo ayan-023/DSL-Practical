@@ -1,0 +1,32 @@
+def S(l):
+    key=int(input("enter the roll no. to search :"))
+    for i in range (len(l)):
+        if key==l[i]:
+            print(" attended student roll  found at index ",i,":",l[i])
+            return
+    print("not attended")
+
+print("ATTENDENT STUDENTS LIST ")
+l=[]
+
+
+n=int(input("enter no. of students:"))
+for i in range(n):
+    x=int(input("enter roll no. :"))
+    l.append(x)
+
+print(l)
+while True:
+    print("1.search")
+    print("2.exit")
+    
+    c=int(input("enter your choice : "))
+    
+    if c==1:
+        S(l)
+    
+    elif c==2:
+        print("exiting")
+        break
+    else:
+        print("invalid input")

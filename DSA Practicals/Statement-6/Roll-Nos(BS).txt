@@ -1,0 +1,42 @@
+Write a Python program to store roll numbers of student array who attended training program in
+sorted order. Write function for searching whether particular student attended training program or
+not, using Binary search
+
+**************************************************************************************************
+
+def binary_search(roll_numbers, target):
+    low = 0
+    high = len(roll_numbers) - 1
+
+    while low <= high:
+        mid = (low + high) // 2  
+
+        if roll_numbers[mid] == target:
+            return mid 
+        elif roll_numbers[mid] < target:
+            low = mid + 1  
+        else:
+            high = mid - 1  
+
+    return -1  
+
+roll_numbers = []
+
+n = int(input("Enter number of students who attended training: "))
+
+for i in range(n):
+    roll = int(input(f"Enter roll number of student {i+1}: "))
+    roll_numbers.append(roll)
+
+roll_numbers.sort()
+print("\nSorted roll numbers of students who attended training:")
+print(roll_numbers)
+
+target = int(input("\nEnter roll number to search: "))
+
+result = binary_search(roll_numbers, target)
+
+if result != -1:
+    print(f" Student with roll number {target} attended the training (found at position {result + 1}).")
+else:
+    print(f" Student with roll number {target} did NOT attend the training.")

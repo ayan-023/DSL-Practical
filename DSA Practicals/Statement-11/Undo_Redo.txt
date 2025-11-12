@@ -1,0 +1,76 @@
+Implementing a real-time undo/redo system for a text editing application using a Stack data
+structure. The system should support the following operations:
+• Make a Change: A new change to the document is made.
+• Undo Action: Revert the most recent change and store it for potential redo.
+• Redo Action: Reapply the most recently undone action.
+• Display Document State: Show the current state of the document after undoing or
+redoing an action.
+
+-------------------------------------------------------------------------------------
+
+class TextEditor:
+    def __init__(self):
+        self.undo_stack=[]
+        self.redo_stack=[]
+        self.doc=""
+
+    def new_txt(self,txt):
+        self.undo_stack.append(self.doc)
+        self.doc=txt
+        self.redo_stack.clear()
+        print("\nDone Successfully\n")
+        editor.display
+
+    def undo(self):
+        if not self.undo_stack:
+            print("Noting to Undo")
+            return
+        self.redo_stack.append(self.doc)
+        self.doc=self.undo_stack.pop()
+        print("\nUndone Successfully\n")
+        editor.display()
+    
+    def redo(self):
+        if not self.redo_stack:
+            print("Noting to redo")
+            return
+        self.undo_stack.append(self.doc)
+        self.doc=self.redo_stack.pop()
+        print("\nRedone Successfully\n")
+        editor.display()
+    
+    def display(self):
+        print("\nCurrent Document:")
+        print(self.doc if self.doc else "[Empty Document]")
+
+editor=TextEditor()
+
+while True:
+        print("\n--- TEXT EDITOR MENU ---")
+        print("1. Make a Change / Create New Document")
+        print("2. Undo")
+        print("3. Redo")
+        print("4. Display Document")
+        print("5. Exit]")
+
+        ch = input("\nEnter your choice: ")
+        
+        if ch == '1':
+            txt=input("\nEnter the text :")
+            editor.new_txt(txt)
+
+        elif ch == '2': 
+            editor.undo()
+
+        elif ch == '3':
+            editor.redo()
+
+        elif ch == '4':
+            editor.display()
+        
+        elif ch == '5':
+            print("Exiting...")
+            break
+
+        else:
+            print("Invalid Output")

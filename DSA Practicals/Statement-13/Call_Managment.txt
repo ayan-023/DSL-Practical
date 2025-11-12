@@ -1,0 +1,73 @@
+A call center receives incoming calls, and each call is assigned a unique customer ID. The
+calls are answered in the order they are received. Your task is to simulate the call queue of a
+call center using a queue data structure.
+• addCall(customerID, callTime): Add a call to the queue with the customer ID and the
+call time (in minutes).
+• answerCall(): Answer and remove the first call from the queue.
+• viewQueue(): View all calls currently in the queue without removing them.
+• isQueueEmpty(): Check if the queue is empty.
+
+-------------------------------------------------------------------------------------
+
+from collections import deque
+
+class callProcess:
+    def __init__(self):
+        self.call_store=deque()
+
+    def add(self,customerID, callTime):
+        self.call_store.append((customerID,callTime))
+        print(f"\nCall added -- Customer ID: {customerID}, Call Time: {callTime} mins")
+
+    def answerCall(self):
+        if not self.call_store:
+            print("No call to Answer")
+        else:
+            customerID, callTime = self.call_store.popleft()
+            print(f"\nCall {customerID} Answered sucessfully for {callTime} mins")
+
+    def isQueueEmpty(self):
+        if not self.call_store:
+            print("\nQueue is empty")
+        else:
+            print("\nThere are still call waiting (Queue is not empty)")
+
+    def display(self):
+        if not self.call_store:
+            print("No call added")
+        else:
+            for i ,(customerID, callTime) in enumerate(self.call_store,1):
+                print(f"\n{i}. ID{customerID} --- {callTime} mins")
+    
+System=callProcess()
+
+while True:
+        print("\n==== CALL CENTER MENU ====")
+        print("1. Add Call")
+        print("2. Answer Call")
+        print("3. View Call Queue")
+        print("4. Check if Queue is Empty")
+        print("5. Exit")
+
+        ch=input("\nEnter the choice : ")
+
+        if ch=='1':
+            call=(input("\nEnter call ID: "))
+            calltime=(input("Enter Call Time: "))
+            System.add(call,calltime)
+
+        elif ch=='2':
+            System.answerCall()
+
+        elif ch=='3':
+            System.isQueueEmpty()
+
+        elif ch=='4':
+            System.display()
+
+        elif ch=='5':
+            print("Exiting...")
+            break
+
+        else:
+            print("Invalid Input")
